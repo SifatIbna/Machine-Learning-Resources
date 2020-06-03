@@ -3,7 +3,7 @@ function [J grad] = nnCostFunction(nn_params, ...
                                    hidden_layer_size, ...
                                    num_labels, ...
                                    X, y, lambda)
-%NNCOSTFUNCTION Implements the neural network cost function for a two layer
+=%NNCOSTFUNCTION Implements the neural network cost function for a two layer
 %neural network which performs classification
 %   [J grad] = NNCOSTFUNCTON(nn_params, hidden_layer_size, num_labels, ...
 %   X, y, lambda) computes the cost and gradient of the neural network. The
@@ -43,7 +43,7 @@ Theta2_grad = zeros(size(Theta2));
 
 
 y_new = zeros(num_labels, m); % 10*5000
-for i=1:m,
+for i=1:m
   y_new(y(i),i)=1;
 end
 
