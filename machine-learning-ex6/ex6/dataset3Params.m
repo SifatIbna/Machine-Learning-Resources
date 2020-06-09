@@ -24,7 +24,29 @@ sigma = 0.3;
 %
 
 
+result = ones(64,3);
+errow=1;
 
+%% Taking value set of [0.01 0.03 0.1 0.3 1, 3, 10 30] for both C and sigma
+
+for c = [0.01 0.03 0.1 0.3 1, 3, 10 30],
+    for sig = [0.01 0.03 0.1 0.3 1, 3, 10 30],
+        [model] = svmTrain(X,y,c, @(x1, x2) gaussianKernel(x1, x2, sig));
+        predictions = svmPredict(model, Xval);
+        pred_er = mean(double(predictions ~= yval));
+        result(errow,:) = [c,sig,pred_er];
+        errow = errow+1;
+    end;
+end;
+
+%% Getting index of the minimum error value
+
+[val ind]=min(result(:,3));
+
+%% C and sigma of the corresponding lowest prediction error value
+
+C = result(ind,1);
+sigma = result(ind,2);
 
 
 
