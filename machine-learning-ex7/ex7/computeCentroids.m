@@ -26,7 +26,16 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+count = zeros(1, K);
 
+for j = 1:K
+	count(j) = sum(ismember(idx,j));
+end
+
+% Compute centroids, the mean of the points that were assigned to it
+for i = 1:m
+    centroids(idx(i),:) += X(i,:)/count(idx(i)); 
+end
 
 
 

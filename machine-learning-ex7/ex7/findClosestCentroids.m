@@ -12,6 +12,7 @@ K = size(centroids, 1);
 idx = zeros(size(X,1), 1);
 
 % ====================== YOUR CODE HERE ======================
+
 % Instructions: Go over every example, find its closest centroid, and store
 %               the index inside idx at the appropriate location.
 %               Concretely, idx(i) should contain the index of the centroid
@@ -20,6 +21,19 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+
+m = size(X,1);
+tempCent = size(centroids,1);
+temp = zeros(size(centroids,1),1);
+
+for i = 1:m
+    for j = 1:tempCent
+        temp(j) = sqrt(sum((X(i,:)- centroids(j,:)).^2));
+    end
+    [val,index] = min(temp);
+    idx(i) = index;
+end
+
 
 
 
